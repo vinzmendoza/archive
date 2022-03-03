@@ -37,7 +37,24 @@ const Tag = () => {
           return;
         }
 
-        setItems(data);
+        if (data) {
+          const finalData = await Promise.all(
+            data.map(async (item) => {
+              let { data, error } = await supabase
+                .from("items")
+                .select(
+                  `
+              id, title, content,
+              tags (id, name)
+          `
+                )
+                .eq("id", item.id)
+                .single();
+              return data;
+            })
+          );
+          setItems(finalData);
+        }
       };
 
       fetchItem();

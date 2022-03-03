@@ -350,12 +350,6 @@ const Item = () => {
               disabled={isSubmitting}
               onClick={onUpdate}
             >
-              {/* {isSubmitting && (
-                    <svg
-                      className="animate-spin h-5 w-5 mr-3 ..."
-                      viewBox="0 0 24 24"
-                    ></svg>
-                  )} */}
               {isSubmitting ? "Updating" : "Update"}
             </button>
             <button
@@ -424,7 +418,6 @@ const Item = () => {
               className="prose rounded shadow dark:prose-invert focus-within:outline-2 focus-within:outline"
               theme={resolvedTheme === "dark" ? "dark" : "light"}
             />
-
             <div className="p-4 overflow-y-auto prose bg-white rounded shadow-xl dark:bg-zinc-800 dark:prose-invert h-60v">
               {reactContent}
             </div>

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import NextLink from "next/link";
 import { HiSearch, HiUser } from "react-icons/hi";
 import { useForm } from "react-hook-form";
@@ -10,6 +10,8 @@ import { useDetectClickOutside } from "../utils/hooks/useDetectClickOutside";
 import PopoverMenu from "./PopoverMenu";
 import { useAvatar } from "../utils/context/Avatar";
 import Avatar from "./Avatar";
+import SearchSelect from "./SearchSelect";
+import { useSearch } from "../utils/context/Search";
 
 const Navbar = () => {
   const router = useRouter();
@@ -24,17 +26,39 @@ const Navbar = () => {
     false
   );
 
+  const categoryRef = useRef(null);
+  const [isCategoryActive, setIsCategoryActive] = useDetectClickOutside(
+    categoryRef,
+    false
+  );
+
+  const { searchValue, category, categories, loading } = useSearch();
+
+  // const categories = [
+  //   { id: 1, title: "Title", value: "title" },
+  //   { id: 2, title: "Tags", value: "tags" },
+  //   { id: 3, title: "Content", value: "content" },
+  // ];
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm();
 
+  useEffect(() => {
+    if (searchValue !== "") {
+      setValue("val", searchValue);
+    } else {
+      setValue("val", "");
+    }
+  }, [searchValue, setValue]);
+
   const onSubmit = (data) => {
-    // console.log(d)
     if (!data.val) return;
     const searchVal = data.val;
-    const searchCateg = data.categ;
+    const searchCateg = category.value;
 
     router.push(`/search?val=${searchVal}&categ=${searchCateg}`);
   };
@@ -49,32 +73,48 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-filter backdrop-blur-sm">
+    <nav className="sticky top-0 z-50 backdrop-filter backdrop-blur-sm ">
       <div className="flex items-center justify-between p-4 mx-auto">
         <div>
           <NextLink href="/" passHref>
-            <a className="">Archive</a>
+            <a className="font-bold uppercase">Archive</a>
           </NextLink>
         </div>
 
-        <div className="basis-1/3">
-          <form onSubmit={handleSubmit(onSubmit)} className="hidden sm:inline">
-            <div className="flex w-fullbasis-1/3 sm:border-2 sm:rounded">
-              <input
-                placeholder="Search..."
-                {...register("val")}
-                className="w-full px-4 py-2 "
-              />
+        <div className="hidden lg:basis-1/3 sm:inline">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex">
+              <div className="flex items-center w-full mr-2 rounded-md dark:bg-zinc-800 focus-within:outline-2 focus-within:outline">
+                <button
+                  className="p-2 rounded-l-md hover:bg-gray-300/80"
+                  type="submit"
+                >
+                  <HiSearch size={24} />
+                </button>
+                <input
+                  placeholder="Search"
+                  {...register("val")}
+                  className="w-full py-2 pl-1 focus:outline-none rounded-r-md dark:bg-zinc-800"
+                />
+              </div>
 
-              <select
-                {...register("categ")}
-                className="pl-2"
-                defaultValue="title"
-              >
-                <option value="title">Title</option>
-                <option value="tags">Tags</option>
-                <option value="content">Content</option>
-              </select>
+              {/* <div className="relative flex items-center">
+                <select
+                  {...register("categ")}
+                  className="p-2 pl-2 rounded bg-zinc-800"
+                  defaultValue="title"
+                >
+                  <option value="title">Title</option>
+                  <option value="tags">Tags</option>
+                  <option value="content">Content</option>
+                </select>
+              </div> */}
+              <SearchSelect
+                categories={categories}
+                toggle={() => setIsCategoryActive(!isCategoryActive)}
+                isActive={isCategoryActive}
+                categoryRef={categoryRef}
+              ></SearchSelect>
             </div>
           </form>
         </div>
