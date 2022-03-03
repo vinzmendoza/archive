@@ -1,25 +1,37 @@
 import { useRouter } from "next/router";
-
+import { HiChevronDown } from "react-icons/hi";
 import { useSearch } from "../utils/context/Search";
 
-const SearchSelect = ({ categories, toggle, isActive, categoryRef }) => {
-  const { category, setCategory, loading } = useSearch();
+const SearchSelect = ({ toggle, isActive, categoryRef, isModal }) => {
+  const { category, setCategory, loading, categories } = useSearch();
   return (
-    <div className="relative w-24 h-auto ">
+    <div className={`relative h-auto ${isModal ? "w-28" : "w-36 ml-2"}`}>
       <div
         onClick={toggle}
         ref={categoryRef}
-        className="p-2 ml-2 rounded-md cursor-pointer dark:bg-zinc-800"
+        tabIndex={0}
+        className={`flex justify-between items-center p-2 rounded-md cursor-pointer ${
+          isModal ? "dark:bg-zinc-700" : "dark:bg-zinc-800"
+        } ${isActive && "focus:outline focus:outline-2 focus:outline-inherit"}`}
       >
         {!loading &&
           category.value.charAt(0).toUpperCase() + category.value.slice(1)}
+
+        <HiChevronDown
+          size={18}
+          className={`ml-4 ${
+            isActive
+              ? "rotate-180 transition ease-in-out"
+              : "rotate-360 transition ease-in-out"
+          }`}
+        />
       </div>
       <div
-        className={`${
-          isActive ? "inline" : "hidden"
-        } absolute p-2 rounded-md bg-zinc-700`}
+        className={`${isActive ? "inline" : "hidden"} absolute p-2 rounded-md ${
+          isModal ? "bg-zinc-600" : "bg-zinc-700"
+        } w-32 mt-2`}
       >
-        {categories.map((categoryItem) => (
+        {categories.map((categoryItem, index) => (
           <div
             key={categoryItem.id}
             onClick={() => setCategory(categoryItem)}

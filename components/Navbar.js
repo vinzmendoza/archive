@@ -32,13 +32,7 @@ const Navbar = () => {
     false
   );
 
-  const { searchValue, category, categories, loading } = useSearch();
-
-  // const categories = [
-  //   { id: 1, title: "Title", value: "title" },
-  //   { id: 2, title: "Tags", value: "tags" },
-  //   { id: 3, title: "Content", value: "content" },
-  // ];
+  const { searchValue, category, categories } = useSearch();
 
   const {
     register,
@@ -86,7 +80,7 @@ const Navbar = () => {
             <div className="flex">
               <div className="flex items-center w-full mr-2 rounded-md dark:bg-zinc-800 focus-within:outline-2 focus-within:outline">
                 <button
-                  className="p-2 rounded-l-md hover:bg-gray-300/80"
+                  className="p-2 transition ease-in-out rounded-l-md hover:dark:bg-gray-700"
                   type="submit"
                 >
                   <HiSearch size={24} />
@@ -97,23 +91,11 @@ const Navbar = () => {
                   className="w-full py-2 pl-1 focus:outline-none rounded-r-md dark:bg-zinc-800"
                 />
               </div>
-
-              {/* <div className="relative flex items-center">
-                <select
-                  {...register("categ")}
-                  className="p-2 pl-2 rounded bg-zinc-800"
-                  defaultValue="title"
-                >
-                  <option value="title">Title</option>
-                  <option value="tags">Tags</option>
-                  <option value="content">Content</option>
-                </select>
-              </div> */}
               <SearchSelect
-                categories={categories}
                 toggle={() => setIsCategoryActive(!isCategoryActive)}
                 isActive={isCategoryActive}
                 categoryRef={categoryRef}
+                isModal={false}
               ></SearchSelect>
             </div>
           </form>
