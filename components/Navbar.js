@@ -78,7 +78,7 @@ const Navbar = () => {
         <div className="hidden lg:basis-1/3 sm:inline">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex">
-              <div className="flex items-center w-full mr-2 rounded-md dark:bg-zinc-800 focus-within:outline-2 focus-within:outline">
+              <div className="flex items-center w-full mr-2 rounded-md dark:bg-gray-800 focus-within:outline-2 focus-within:outline">
                 <button
                   className="p-2 transition ease-in-out rounded-l-md hover:dark:bg-gray-700"
                   type="submit"
@@ -88,7 +88,7 @@ const Navbar = () => {
                 <input
                   placeholder="Search"
                   {...register("val")}
-                  className="w-full py-2 pl-1 focus:outline-none rounded-r-md dark:bg-zinc-800"
+                  className="w-full py-2 pl-1 focus:outline-none rounded-r-md dark:bg-gray-800"
                 />
               </div>
               <SearchSelect
@@ -115,13 +115,13 @@ const Navbar = () => {
             onClick={handleToggleMenu}
           >
             {profile.length === 0 ? (
-              <div className="w-12 h-12 rounded-full bg-zinc-300 dark:bg-zinc-600"></div>
+              <div className="w-12 h-12 bg-gray-300 rounded-full dark:bg-gray-600"></div>
             ) : profile.avatar_url ? (
               <div className="relative w-12 h-12">
                 <Avatar url={profile.avatar_url} />
               </div>
             ) : (
-              <div className="flex items-center justify-center w-12 h-12 overflow-hidden rounded-full bg-zinc-300 dark:bg-zinc-600">
+              <div className="flex items-center justify-center w-12 h-12 overflow-hidden bg-gray-300 rounded-full dark:bg-gray-600">
                 <span className="text-2xl uppercase">
                   {profile.email?.charAt(0)}
                 </span>

@@ -344,25 +344,10 @@ const Item = () => {
     <>
       <PageLayout title="Item">
         <form onKeyDown={(e) => checkKeyDown(e)}>
-          <div className="flex items-center justify-between mb-4">
-            <button
-              className="flex p-2 bg-green-400 rounded cursor-pointer dark:bg-green-600 dark:hover:bg-green-500 hover:bg-green-500 disabled:bg-gray-500"
-              disabled={isSubmitting}
-              onClick={onUpdate}
-            >
-              {isSubmitting ? "Updating" : "Update"}
-            </button>
-            <button
-              className="p-2 text-gray-100 bg-red-500 rounded cursor-pointer hover:bg-red-600"
-              onClick={openModal}
-            >
-              {isDeleting ? "Deleting" : "Delete"}
-            </button>
-          </div>
           <div className="flex flex-col mb-4 space-y-2">
             <input
               {...register("title", { required: true })}
-              className="px-4 py-2 rounded shadow bg-zinc-50 dark:bg-zinc-700"
+              className="px-4 py-2 rounded-md shadow bg-gray-50 dark:bg-gray-800"
               placeholder="Title..."
               defaultValue={item.title}
             />
@@ -371,12 +356,12 @@ const Item = () => {
               {errors.title?.type === "required" && "Title is required"}
             </span>
 
-            <div className="p-2 rounded shadow bg-zinc-50 focus-within:outline focus-within:outline-2 dark:bg-zinc-700 ">
+            <div className="p-2 rounded-md shadow bg-gray-50 focus-within:outline focus-within:outline-2 dark:bg-gray-800 ">
               <ul className="flex flex-wrap items-start justify-start">
                 {item.tags.map((tag, index) => (
                   <li
                     key={index}
-                    className="flex items-center justify-center px-3 py-1 mb-2 mr-2 bg-blue-400 rounded"
+                    className="flex items-center justify-center px-3 py-1 mb-2 mr-2 bg-blue-400 rounded-md"
                   >
                     {tag.name}
                     <i
@@ -391,7 +376,7 @@ const Item = () => {
               <input
                 // {...register("tags")}
                 maxLength={45}
-                className="w-full mt-2 ml-2 bg-zinc-50 dark:bg-zinc-700 focus:outline-none"
+                className="w-full mt-2 ml-2 bg-gray-50 dark:bg-gray-800 focus:outline-none"
                 placeholder="Enter a comma after each tag..."
                 onKeyUp={(e) => (e.key === "," ? addTags(e) : null)}
                 onBlur={(e) => addTags(e)}
@@ -415,12 +400,27 @@ const Item = () => {
               onChange={(value, viewUpdate) => {
                 handleOnChangeVal(value);
               }}
-              className="prose rounded shadow dark:prose-invert focus-within:outline-2 focus-within:outline"
+              className="prose rounded-md shadow dark:prose-invert focus-within:outline-2 focus-within:outline"
               theme={resolvedTheme === "dark" ? "dark" : "light"}
             />
-            <div className="p-4 overflow-y-auto prose bg-white rounded shadow-xl dark:bg-zinc-800 dark:prose-invert h-60v">
+            <div className="p-4 overflow-y-auto prose bg-white rounded-md shadow-xl dark:bg-gray-800 dark:prose-invert h-60v">
               {reactContent}
             </div>
+          </div>
+          <div className="flex items-center justify-end mt-4 space-x-2">
+            <button
+              className="p-2 text-red-500 rounded-md cursor-pointer hover:text-gray-50 hover:bg-red-400"
+              onClick={openModal}
+            >
+              {isDeleting ? "Deleting" : "Delete"}
+            </button>
+            <button
+              className="flex p-2 bg-green-400 rounded-md cursor-pointer dark:bg-green-600 dark:hover:bg-green-500 hover:bg-green-500 disabled:bg-gray-500"
+              disabled={isSubmitting}
+              onClick={onUpdate}
+            >
+              {isSubmitting ? "Updating" : "Update"}
+            </button>
           </div>
         </form>
         <Modal

@@ -55,9 +55,11 @@ const Home = () => {
   return (
     <PageLayout title="Home">
       <NextLink href="/items/add" passHref>
-        <a className="p-2 border rounded">Add Item</a>
+        <a className="p-2 rounded dark:bg-blue-100 dark:text-gray-800 dark:hover:bg-blue-200">
+          Add Item
+        </a>
       </NextLink>
-      <div className="flex flex-col mt-12 space-y-2 sm:grid sm:grid-cols-2 md:grid-cols-3 sm:space-y-0 sm:gap-4">
+      <div className="flex flex-col mt-12 space-y-2 sm:grid sm:grid-cols-2 md:grid-cols-3 sm:space-y-0 sm:gap-4 sm:auto-rows-auto">
         {items.map((item) => (
           <Item item={item} key={item.id} />
         ))}

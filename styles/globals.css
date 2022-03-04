@@ -9,12 +9,13 @@ html,
 
 .cm-editor,
 .cm-scroller {
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
+  /* background-color: red; */
 }
 
 .ͼ1.cm-editor {
   outline-style: none !important;
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
 }
 
 :root {
