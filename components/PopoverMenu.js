@@ -81,7 +81,7 @@ const PopoverMenu = ({ state: isActive, setIsActive }) => {
         </div>
 
         <NextLink href="/profile" passHref>
-          <div className="flex items-center p-2 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-500">
+          <div className="flex items-center p-2 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600">
             <HiUser size={18} />
             <p className="ml-2 text-sm">Profile</p>
           </div>
@@ -89,7 +89,7 @@ const PopoverMenu = ({ state: isActive, setIsActive }) => {
 
         <div
           onClick={signOut}
-          className="flex items-center p-2 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-500"
+          className="flex items-center p-2 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600"
         >
           <HiLogout size={18} />
           <p className="ml-2 text-sm">Sign out</p>

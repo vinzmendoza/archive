@@ -18,6 +18,32 @@ html,
   border-radius: 0.375rem;
 }
 
+.cm-theme-dark .cm-content {
+  background-color: #374151;
+}
+
+.cm-theme-dark .cm-gutter {
+  background-color: #1f2937;
+}
+
+.cm-theme-dark .cm-gutterElement.cm-activeLineGutter,
+.cm-theme-dark .cm-activeLine {
+  background-color: #4b5563;
+}
+
+.cm-theme-light .cm-content {
+  background-color: #f3f4f6;
+}
+
+.cm-theme-light .cm-gutter {
+  background-color: #e5e7eb;
+}
+
+.cm-theme-light .cm-gutterElement.cm-activeLineGutter,
+.cm-theme-light .cm-activeLine {
+  background-color: #d1d5db;
+}
+
 :root {
   --toastify-color-info: #38bdf8 !important;
   --toastify-color-success: #16a34a !important;
