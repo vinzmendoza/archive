@@ -42,20 +42,10 @@ const Add = () => {
   };
 
   const onSubmit = async (data) => {
+    console.log(data.tags.length);
     try {
       setIsSubmitting(true);
       const authUser = supabase.auth.user();
-
-      //add title of item
-      const { data: item_data, error: item_error } = await supabase
-        .from("items")
-        .insert([
-          {
-            title: data.title,
-            content: data.markdown,
-            created_by: authUser.id,
-          },
-        ]);
 
       //if no tags added, return
       if (data.tags === undefined || data.tags === null) return;
@@ -69,6 +59,17 @@ const Add = () => {
       } else {
         clearErrors("tags");
       }
+
+      //add title of item
+      const { data: item_data, error: item_error } = await supabase
+        .from("items")
+        .insert([
+          {
+            title: data.title,
+            content: data.markdown,
+            created_by: authUser.id,
+          },
+        ]);
 
       const asyncRes = await Promise.all(
         //check db if data input already exists
@@ -121,6 +122,7 @@ const Add = () => {
       // notify("error", "There seems to be a problem, please try again.");
     } finally {
       setIsSubmitting(false);
+      if (data.tags.length > 6) return;
       toast.success("Item successfully added!", {
         theme: resolvedTheme,
       });
@@ -179,31 +181,32 @@ const Add = () => {
         onSubmit={handleSubmit(onSubmit)}
         onKeyDown={(e) => checkKeyDown(e)}
       >
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="mb-4 text-2xl">Add Post</h2>
+        <h2 className="mb-4 text-2xl">Add Post</h2>
 
-          <input
-            type="submit"
-            className="p-2 bg-green-600 rounded cursor-pointer hover:bg-green-800"
-            value={isSubmitting ? "Submitting" : "Submit"}
-          />
-        </div>
-        <div className="flex flex-col mb-4 space-y-2">
+        <div className="flex flex-col">
+          <label htmlFor="title" className="mb-2 text-sm text-gray-200">
+            Title
+          </label>
           <input
             {...register("title", { required: true })}
-            className="px-4 py-2 rounded"
-            placeholder="Title..."
+            className="px-4 py-2 rounded-md shadow bg-gray-50 dark:bg-gray-800"
+            placeholder="Title"
           />
-
-          <span>
+          <span className="h-8 pt-1 text-xs text-red-400">
             {errors.title?.type === "required" && "Title is required"}
           </span>
-          <div className="p-2 bg-white rounded dark:bg-neutral-800 focus:outline hover:border-1">
+        </div>
+
+        <div className="flex flex-col">
+          <label htmlFor="tags" className="mb-2 text-sm text-gray-200">
+            Tags
+          </label>
+          <div className="p-2 rounded bg-gray-50 focus-within:outline focus-within:outline-2 dark:bg-gray-800">
             <ul className="flex flex-wrap items-start justify-start">
               {tags.map((tag, index) => (
                 <li
                   key={index}
-                  className="flex items-center justify-center px-3 py-1 mb-2 mr-2 bg-blue-400 rounded-2xl"
+                  className="flex items-center justify-center py-1 pl-3 pr-2 mb-2 mr-2 bg-gray-600 rounded-md"
                 >
                   {tag}
                   <i
@@ -217,21 +220,26 @@ const Add = () => {
             </ul>
             <input
               maxLength={45}
-              className="w-full mt-2 ml-2 bg-white dark:bg-neutral-800 focus:outline-none"
+              className="w-full mt-2 ml-2 bg-white dark:bg-gray-800 focus:outline-none"
               placeholder="Enter a comma after each tag..."
               onKeyUp={(e) => (e.key === "," ? addTags(e) : null)}
               onBlur={(e) => addTags(e)}
             />
           </div>
-          <span>{errors.tags && errors.tags?.message}</span>
+          <span className="h-8 pt-1 text-xs text-red-400">
+            {errors.tags && errors.tags?.message}
+          </span>
         </div>
 
-        <div className="flex flex-col sm:grid sm:grid-cols-2">
-          <div className="mb-8 mr-0 sm:mr-4 sm:mb-0">
+        <div className="flex flex-col">
+          <label htmlFor="markdown" className="mb-2 text-sm text-gray-200">
+            Content
+          </label>
+          <div className="flex flex-col sm:grid sm:grid-cols-2 auto-cols-auto sm:gap-x-4 gap-y-4">
             <CodeMirror
               {...register("markdown")}
               value=""
-              height="60vh"
+              height="70vh"
               extensions={[
                 markdown({ base: markdownLanguage, codeLanguages: languages }),
                 javascript({ jsx: "true" }),
@@ -239,14 +247,21 @@ const Add = () => {
               onChange={(value, viewUpdate) => {
                 handleOnChangeVal(value);
               }}
-              className="prose dark:prose-invert"
+              className="prose rounded-md shadow dark:prose-invert focus-within:outline-2 focus-within:outline"
               theme={resolvedTheme === "dark" ? "dark" : "light"}
             />
+            <div className="p-4 overflow-y-auto prose bg-white rounded-md shadow-xl dark:bg-gray-800 dark:prose-invert h-70v">
+              {reactContent}
+            </div>
           </div>
+        </div>
 
-          <div className="overflow-y-auto prose dark:prose-invert h-60v">
-            {reactContent}
-          </div>
+        <div className="flex justify-end mt-4">
+          <input
+            type="submit"
+            className="p-2 bg-green-600 rounded cursor-pointer hover:bg-green-800"
+            value={isSubmitting ? "Submitting" : "Submit"}
+          />
         </div>
       </form>
     </PageLayout>

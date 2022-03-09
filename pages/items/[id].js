@@ -126,6 +126,7 @@ const Item = () => {
 
       //check input tags
       if (data.tags === undefined || data.tags === null) return;
+
       if (data.tags.length > 6) {
         setError("tags", {
           type: "exceed",
@@ -233,6 +234,7 @@ const Item = () => {
     } finally {
       setIsSubmitting(false);
       console.log("submitted");
+      if (data.tags.length > 6) return;
       // notify("success", "Item successfully updated!");
       toast.success("Item successfully updated!", {
         theme: resolvedTheme,
@@ -344,72 +346,87 @@ const Item = () => {
     <>
       <PageLayout title="Item">
         <form onKeyDown={(e) => checkKeyDown(e)}>
-          <div className="flex flex-col mb-4 space-y-2">
+          <div className="flex flex-col">
+            <label htmlFor="title" className="mb-2 text-sm text-gray-200">
+              Title
+            </label>
             <input
               {...register("title", { required: true })}
               className="px-4 py-2 rounded-md shadow bg-gray-50 dark:bg-gray-800"
-              placeholder="Title..."
+              placeholder="Title"
               defaultValue={item.title}
             />
 
-            <span>
+            <span className="h-8 pt-1 text-xs text-red-400">
               {errors.title?.type === "required" && "Title is required"}
             </span>
+          </div>
 
+          <div className="flex flex-col">
+            <label htmlFor="tags" className="mb-2 text-sm text-gray-200">
+              Tags
+            </label>
             <div className="p-2 rounded-md shadow bg-gray-50 focus-within:outline focus-within:outline-2 dark:bg-gray-800 ">
               <ul className="flex flex-wrap items-start justify-start">
                 {item.tags.map((tag, index) => (
                   <li
                     key={index}
-                    className="flex items-center justify-center px-3 py-1 mb-2 mr-2 bg-blue-400 rounded-md"
+                    className="flex items-center justify-center py-1 pl-3 pr-2 mb-2 mr-2 bg-gray-600 rounded-md"
                   >
                     {tag.name}
                     <i
                       onClick={() => removeTag(index)}
                       className="ml-1 cursor-pointer"
                     >
-                      <HiXCircle size={22} className="hover:text-gray-800" />
+                      <HiXCircle size={22} className="hover:text-gray-400" />
                     </i>
                   </li>
                 ))}
               </ul>
               <input
-                // {...register("tags")}
                 maxLength={45}
                 className="w-full mt-2 ml-2 bg-gray-50 dark:bg-gray-800 focus:outline-none"
-                placeholder="Enter a comma after each tag..."
+                placeholder="Enter a comma after each tag"
                 onKeyUp={(e) => (e.key === "," ? addTags(e) : null)}
                 onBlur={(e) => addTags(e)}
               />
             </div>
-            <span>{errors.tags && errors.tags?.message}</span>
+            <span className="h-8 text-xs text-red-400">
+              {errors.tags && errors.tags?.message}
+            </span>
           </div>
 
-          <div className="flex flex-col sm:grid sm:grid-cols-2 auto-cols-auto sm:gap-x-4 gap-y-4">
-            <CodeMirror
-              {...register("markdown")}
-              value={item ? item.content : ""}
-              height="60vh"
-              extensions={[
-                markdown({
-                  base: markdownLanguage,
-                  codeLanguages: languages,
-                }),
-                javascript({ jsx: "true" }),
-              ]}
-              onChange={(value, viewUpdate) => {
-                handleOnChangeVal(value);
-              }}
-              className="prose rounded-md shadow dark:prose-invert focus-within:outline-2 focus-within:outline"
-              theme={resolvedTheme === "dark" ? "dark" : "light"}
-            />
-            <div className="p-4 overflow-y-auto prose bg-white rounded-md shadow-xl dark:bg-gray-800 dark:prose-invert h-60v">
-              {reactContent}
+          <div className="flex flex-col">
+            <label htmlFor="markdown" className="mb-2 text-sm text-gray-200">
+              Content
+            </label>
+            <div className="flex flex-col sm:grid sm:grid-cols-2 auto-cols-auto sm:gap-x-4 gap-y-4">
+              <CodeMirror
+                {...register("markdown")}
+                value={item ? item.content : ""}
+                height="70vh"
+                extensions={[
+                  markdown({
+                    base: markdownLanguage,
+                    codeLanguages: languages,
+                  }),
+                  javascript({ jsx: "true" }),
+                ]}
+                onChange={(value, viewUpdate) => {
+                  handleOnChangeVal(value);
+                }}
+                className="prose rounded-md shadow dark:prose-invert focus-within:outline-2 focus-within:outline"
+                theme={resolvedTheme === "dark" ? "dark" : "light"}
+              />
+              <div className="p-4 overflow-y-auto prose bg-white rounded-md shadow-xl dark:bg-gray-800 dark:prose-invert h-70v">
+                {reactContent}
+              </div>
             </div>
           </div>
+
           <div className="flex items-center justify-end mt-4 space-x-2">
             <button
-              className="p-2 text-red-500 rounded-md cursor-pointer hover:text-gray-50 hover:bg-red-400"
+              className="p-2 text-red-400 border border-red-400 rounded-md cursor-pointer hover:text-gray-50 hover:bg-red-400"
               onClick={openModal}
             >
               {isDeleting ? "Deleting" : "Delete"}

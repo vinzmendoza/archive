@@ -26,9 +26,12 @@ html,
   background-color: #1f2937;
 }
 
-.cm-theme-dark .cm-gutterElement.cm-activeLineGutter,
 .cm-theme-dark .cm-activeLine {
   background-color: #4b5563;
+}
+
+.cm-theme-dark .cm-gutterElement.cm-activeLineGutter {
+  background-color: #374151;
 }
 
 .cm-theme-light .cm-content {
