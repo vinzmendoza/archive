@@ -199,7 +199,7 @@ const Add = () => {
 
         <div className="flex flex-col">
           <label htmlFor="tags" className="mb-2 text-sm text-gray-200">
-            Tags
+            Tags <span className="text-xs text-gray-400">(maximum of 6)</span>
           </label>
           <div className="p-2 rounded bg-gray-50 focus-within:outline focus-within:outline-2 dark:bg-gray-800">
             <ul className="flex flex-wrap items-start justify-start">

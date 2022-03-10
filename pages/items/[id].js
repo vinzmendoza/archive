@@ -127,15 +127,20 @@ const Item = () => {
       //check input tags
       if (data.tags === undefined || data.tags === null) return;
 
-      if (data.tags.length > 6) {
-        setError("tags", {
-          type: "exceed",
-          message: "Maximum of 6 tags only",
-        });
-        return;
-      } else {
-        clearErrors("tags");
-      }
+      // if (data.tags.length > 6) {
+      //   console.log(data.tags);
+      //   setError("tags", {
+      //     type: "exceed",
+      //     message: "Maximum of 6 tags only",
+      //   });
+      //   // toast.error("Maximum of 6 tags only", {
+      //   //   theme: resolvedTheme,
+      //   // });
+      //   return;
+      // } else {
+      //   clearErrors("tags");
+      // }
+
       //add new tags
       const addNewTags = await Promise.all(
         data.tags.map(async (tag) => {
@@ -234,8 +239,8 @@ const Item = () => {
     } finally {
       setIsSubmitting(false);
       console.log("submitted");
-      if (data.tags.length > 6) return;
       // notify("success", "Item successfully updated!");
+
       toast.success("Item successfully updated!", {
         theme: resolvedTheme,
       });
@@ -364,7 +369,7 @@ const Item = () => {
 
           <div className="flex flex-col">
             <label htmlFor="tags" className="mb-2 text-sm text-gray-200">
-              Tags
+              Tags <span className="text-xs text-gray-400">(maximum of 6)</span>
             </label>
             <div className="p-2 rounded-md shadow bg-gray-50 focus-within:outline focus-within:outline-2 dark:bg-gray-800 ">
               <ul className="flex flex-wrap items-start justify-start">
