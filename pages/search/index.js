@@ -110,6 +110,8 @@ import { useAuth } from "../../utils/context/Auth";
 import PageLayout from "../../components/Layout/PageLayout";
 import Auth from "../../components/Auth";
 import Item from "../items/item";
+import Loader from "../../components/Loader";
+import NoData from "../../components/svg/NoData";
 
 const Search = () => {
   const { user } = useAuth();
@@ -182,14 +184,13 @@ const Search = () => {
             })
           );
           setItems(finalData);
+          setLoading(false);
         }
       };
 
       fetchItems();
     } catch (err) {
       console.log(err);
-    } finally {
-      setLoading(false);
     }
   }, [val, categ, router]);
 
@@ -198,14 +199,29 @@ const Search = () => {
   if (loading)
     return (
       <PageLayout title="Loading">
-        <p>Loading.........................</p>
+        <Loader />
       </PageLayout>
     );
 
   if (!items.length) {
     return (
       <PageLayout title="No Data">
-        <p>No data...</p>
+        <div className="flex flex-col items-center justify-center">
+          <NoData />
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="mt-16 mb-4 text-4xl">
+              Sorry we couldn&apos;t find <br />
+              any <span className="italic dark:text-gray-500">
+                {categ}
+              </span>{" "}
+              that matches{" "}
+              <span className="italic dark:text-gray-500">{val}</span>
+            </h2>
+            <p className="">
+              Please check the spelling or try searching with a different term
+            </p>
+          </div>
+        </div>
       </PageLayout>
     );
   }

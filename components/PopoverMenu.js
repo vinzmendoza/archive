@@ -48,9 +48,9 @@ const PopoverMenu = ({ state: isActive, setIsActive }) => {
             <Avatar url={profile.avatar_url} />
           ) : (
             <div
-              className={`relative flex items-center justify-center w-12 h-12 overflow-hidden bg-gray-300 dark:bg-gray-400 rounded-full `}
+              className={`relative flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-300 dark:bg-gray-400 rounded-full `}
             >
-              <span className="text-5xl">{user.email.charAt(0)}</span>
+              <span className="text-2xl uppercase">{user.email.charAt(0)}</span>
             </div>
           )}
         </div>

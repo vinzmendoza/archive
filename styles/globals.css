@@ -53,3 +53,15 @@ html,
   --toastify-color-warning: #facc15 !important;
   --toastify-color-error: #dc2626 !important;
 }
+
+.loader-1 {
+  animation-delay: 50ms;
+}
+
+.loader-2 {
+  animation-delay: 100ms;
+}
+
+.loader-3 {
+  animation-delay: 150ms;
+}

@@ -6,6 +6,7 @@ import { useAuth } from "../../../utils/context/Auth";
 import PageLayout from "../../../components/Layout/PageLayout";
 import Auth from "../../../components/Auth";
 import Item from "../../items/item";
+import Loader from "../../../components/Loader";
 
 const Tag = () => {
   const { user } = useAuth();
@@ -54,21 +55,24 @@ const Tag = () => {
             })
           );
           setItems(finalData);
+          setLoading(false);
         }
       };
 
       fetchItem();
     } catch (err) {
       console.log(err);
-    } finally {
-      setLoading(false);
     }
   }, [val, router]);
 
   if (!user) return <Auth />;
 
   if (loading) {
-    return <PageLayout title="Home">loading...</PageLayout>;
+    return (
+      <PageLayout title="Home">
+        <Loader />
+      </PageLayout>
+    );
   }
 
   if (!items.length) {

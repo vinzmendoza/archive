@@ -50,16 +50,6 @@ const Add = () => {
       //if no tags added, return
       if (data.tags === undefined || data.tags === null) return;
 
-      if (data.tags.length > 6) {
-        setError("tags", {
-          type: "exceed",
-          message: "Maximum of 6 tags only",
-        });
-        return;
-      } else {
-        clearErrors("tags");
-      }
-
       //add title of item
       const { data: item_data, error: item_error } = await supabase
         .from("items")
@@ -119,16 +109,12 @@ const Add = () => {
       toast.error("There seems to be a problem, please try again.", {
         theme: resolvedTheme,
       });
-      // notify("error", "There seems to be a problem, please try again.");
     } finally {
       setIsSubmitting(false);
-      if (data.tags.length > 6) return;
       toast.success("Item successfully added!", {
         theme: resolvedTheme,
       });
       router.push("/");
-
-      // notify("success", "Item successfully added!");
     }
   };
 
@@ -199,7 +185,7 @@ const Add = () => {
 
         <div className="flex flex-col">
           <label htmlFor="tags" className="mb-2 text-sm text-gray-200">
-            Tags <span className="text-xs text-gray-400">(maximum of 6)</span>
+            Tags
           </label>
           <div className="p-2 rounded bg-gray-50 focus-within:outline focus-within:outline-2 dark:bg-gray-800">
             <ul className="flex flex-wrap items-start justify-start">

@@ -16,6 +16,7 @@ import { useTheme } from "next-themes";
 import { HiXCircle } from "react-icons/hi";
 import { useDetectClickOutside } from "../../utils/hooks/useDetectClickOutside";
 import Modal from "../../components/Modal";
+import Loader from "../../components/Loader";
 
 const Item = () => {
   const { user } = useAuth();
@@ -57,6 +58,7 @@ const Item = () => {
           `
         )
         .eq("id", id)
+        .order("id", { foreignTable: "tags", ascending: true })
         .single();
 
       if (error) {
@@ -126,20 +128,6 @@ const Item = () => {
 
       //check input tags
       if (data.tags === undefined || data.tags === null) return;
-
-      // if (data.tags.length > 6) {
-      //   console.log(data.tags);
-      //   setError("tags", {
-      //     type: "exceed",
-      //     message: "Maximum of 6 tags only",
-      //   });
-      //   // toast.error("Maximum of 6 tags only", {
-      //   //   theme: resolvedTheme,
-      //   // });
-      //   return;
-      // } else {
-      //   clearErrors("tags");
-      // }
 
       //add new tags
       const addNewTags = await Promise.all(
@@ -232,37 +220,18 @@ const Item = () => {
       );
     } catch (error) {
       console.log(error);
-      // notify("error", "There seems to be a problem, please try again.");
+
       toast.error("There seems to be a problem, please try again.", {
         theme: resolvedTheme,
       });
     } finally {
       setIsSubmitting(false);
       console.log("submitted");
-      // notify("success", "Item successfully updated!");
 
       toast.success("Item successfully updated!", {
         theme: resolvedTheme,
       });
     }
-
-    // for testing
-    // try {
-    //   setIsSubmitting(true);
-    //   const { data, error } = await supabase
-    //     .from("items")
-    //     .select()
-    //     .eq("id", id);
-    //   if (error) console.log(error);
-    // } catch (err) {
-    //   console.log(err);
-    //   // notify("error", "Error!");
-    //   throw new Error(err);
-    // } finally {
-    //   setIsSubmitting(false);
-    //   // notify("success", "Item successfully updated!");
-    //   toast.success("Item successfully updated!", { theme: resolvedTheme });
-    // }
   });
 
   const openModal = (e) => {
@@ -334,7 +303,7 @@ const Item = () => {
   if (isLoading) {
     return (
       <PageLayout title="Archive">
-        <p>loading...</p>
+        <Loader />
       </PageLayout>
     );
   }
@@ -369,7 +338,7 @@ const Item = () => {
 
           <div className="flex flex-col">
             <label htmlFor="tags" className="mb-2 text-sm text-gray-200">
-              Tags <span className="text-xs text-gray-400">(maximum of 6)</span>
+              Tags
             </label>
             <div className="p-2 rounded-md shadow bg-gray-50 focus-within:outline focus-within:outline-2 dark:bg-gray-800 ">
               <ul className="flex flex-wrap items-start justify-start">
