@@ -42,13 +42,9 @@ const Add = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log(data.tags.length);
     try {
       setIsSubmitting(true);
       const authUser = supabase.auth.user();
-
-      //if no tags added, return
-      if (data.tags === undefined || data.tags === null) return;
 
       //add title of item
       const { data: item_data, error: item_error } = await supabase
@@ -56,10 +52,13 @@ const Add = () => {
         .insert([
           {
             title: data.title,
-            content: data.markdown,
+            content: data.markdown ? data.markdown : "",
             created_by: authUser.id,
           },
         ]);
+
+      //if no tags added, return
+      if (data.tags === undefined || data.tags === null) return;
 
       const asyncRes = await Promise.all(
         //check db if data input already exists
@@ -68,8 +67,6 @@ const Add = () => {
             .from("tags")
             .select()
             .eq("name", tag);
-
-          console.log(dupe_tag);
 
           //if  tag exists in db, add relation in junction table
           if (dupe_tag.length !== 0) {

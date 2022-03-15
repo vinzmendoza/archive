@@ -140,7 +140,6 @@ const Item = () => {
 
           // add new tag if it doesnt exists yet.
           if (Object.keys(db_tag).length === 0) {
-            // console.log(tag);
             const { data: added_tag, error: added_tag_error } = await supabase
               .from("tags")
               .insert([
@@ -211,7 +210,6 @@ const Item = () => {
             // return;
           }
           //delete tag from tags table if a tag has no more relation in items_tags table
-          console.log("deleting tag if no junction row related");
           const { data: del_tag, error: del_tag_error } = await supabase
             .from("tags")
             .delete()
@@ -226,7 +224,6 @@ const Item = () => {
       });
     } finally {
       setIsSubmitting(false);
-      console.log("submitted");
 
       toast.success("Item successfully updated!", {
         theme: resolvedTheme,
@@ -258,14 +255,12 @@ const Item = () => {
       //check if item's tags has other relations with other items. if none, delete tag from tags table
       const checkTags = await Promise.all(
         tempTags.map(async (tag) => {
-          // console.log(tag);
           const { data: tag_in_junction, error: tag_in_junction_error } =
             await supabase
               .from("items_tags")
               .select()
               .match({ tag_id: tag.id });
 
-          // console.log(tag_in_junction);
           if (tag_in_junction.length !== 0) return;
 
           const { data: delete_tag, error: delete_tag_error } = await supabase
@@ -377,7 +372,7 @@ const Item = () => {
             <div className="flex flex-col sm:grid sm:grid-cols-2 auto-cols-auto sm:gap-x-4 gap-y-4">
               <CodeMirror
                 {...register("markdown")}
-                value={item ? item.content : ""}
+                value={item !== null || item ? item.content : ""}
                 height="70vh"
                 extensions={[
                   markdown({
