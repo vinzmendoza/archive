@@ -22,6 +22,7 @@ const Tag = () => {
     if (!val) return;
 
     try {
+      setLoading(true);
       const fetchItem = async () => {
         let { data, error } = await supabase
           .from("items")
@@ -85,7 +86,10 @@ const Tag = () => {
 
   return (
     <PageLayout title="Search Results">
-      <p>Tags</p>
+      <h2 className="mb-4 text-3xl">Tags Results </h2>
+      <p className="text-sm dark:text-gray-300">
+        Found {items.length} matches with tag including &quot;{val}&quot;
+      </p>
       <div className="flex flex-col mt-12 space-y-2 sm:grid sm:grid-cols-2 md:grid-cols-3 sm:space-y-0 sm:gap-4">
         {items.map((item) => (
           <Item item={item} key={item.id} />
