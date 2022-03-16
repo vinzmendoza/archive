@@ -65,3 +65,7 @@ html,
 .loader-3 {
   animation-delay: 250ms;
 }
+
+.prose {
+  max-width: 100% !important;
+}

@@ -218,7 +218,7 @@ const Add = () => {
           <label htmlFor="markdown" className="mb-2 text-sm text-gray-200">
             Content
           </label>
-          <div className="flex flex-col sm:grid sm:grid-cols-2 auto-cols-auto sm:gap-x-4 gap-y-4">
+          <div className="flex flex-col justify-between gap-4 sm:flex-row">
             <CodeMirror
               {...register("markdown")}
               value=""
@@ -230,10 +230,10 @@ const Add = () => {
               onChange={(value, viewUpdate) => {
                 handleOnChangeVal(value);
               }}
-              className="prose rounded-md shadow dark:prose-invert focus-within:outline-2 focus-within:outline"
+              className="w-full prose rounded-md shadow dark:prose-invert focus-within:outline-2 focus-within:outline"
               theme={resolvedTheme === "dark" ? "dark" : "light"}
             />
-            <div className="p-4 overflow-y-auto prose bg-white rounded-md shadow-xl dark:bg-gray-800 dark:prose-invert h-70v">
+            <div className="w-full p-4 prose rounded-md shadow dark:prose-invert dark:bg-gray-800 h-70v">
               {reactContent}
             </div>
           </div>
