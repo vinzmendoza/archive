@@ -12,7 +12,9 @@ const PageLayout = ({ children, title }) => {
 
       <Navbar />
 
-      <main className="p-4 mx-auto max-w-7xl xs:p-0">{children}</main>
+      <main className="px-4 pt-4 pb-12 mx-auto max-w-7xl xs:p-0">
+        {children}
+      </main>
     </>
   );
 };

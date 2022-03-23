@@ -10,8 +10,10 @@ const SearchSelect = ({ toggle, isActive, categoryRef, isModal }) => {
         onClick={toggle}
         ref={categoryRef}
         tabIndex={0}
-        className={`flex justify-between items-center p-2 rounded-md cursor-pointer h-auto ${
-          isModal ? "dark:bg-gray-700" : "dark:bg-gray-800"
+        className={`flex justify-between items-center p-2 rounded-md  cursor-pointer h-auto ${
+          isModal
+            ? "bg-white dark:bg-zinc-700 "
+            : "bg-white dark:bg-zinc-800 shadow "
         } ${isActive && "focus:outline focus:outline-2 focus:outline-inherit"}`}
       >
         {!loading &&
@@ -28,14 +30,14 @@ const SearchSelect = ({ toggle, isActive, categoryRef, isModal }) => {
       </div>
       <div
         className={`${isActive ? "inline" : "hidden"} absolute p-2 rounded-md ${
-          isModal ? "bg-gray-600" : "bg-gray-700"
+          isModal ? "bg-white dark:bg-zinc-600" : "bg-white dark:bg-zinc-700"
         } w-32 mt-2`}
       >
         {categories.map((categoryItem, index) => (
           <div
             key={categoryItem.id}
             onClick={() => setCategory(categoryItem)}
-            className="p-2 rounded-md cursor-pointer hover:bg-gray-600"
+            className="p-2 rounded-md cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-600"
           >
             {categoryItem.title}
           </div>

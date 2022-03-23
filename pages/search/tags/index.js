@@ -7,6 +7,7 @@ import PageLayout from "../../../components/Layout/PageLayout";
 import Auth from "../../../components/Auth";
 import Item from "../../items/item";
 import Loader from "../../../components/Loader";
+import NoData from "../../../components/svg/NoData";
 
 const Tag = () => {
   const { user } = useAuth();
@@ -78,8 +79,21 @@ const Tag = () => {
 
   if (!items.length) {
     return (
-      <PageLayout title="Search Results">
-        <p>No data to show</p>
+      <PageLayout title="No Data">
+        <div className="flex flex-col items-center justify-center">
+          <NoData />
+          <div className="flex flex-col items-center justify-center">
+            <h2 className="mt-16 mb-4 text-4xl text-center">
+              Sorry we couldn&apos;t find <br />a tag that matches{" "}
+              <span className="italic text-zinc-400 dark:text-zinc-500">
+                &quot;{val}&quot;
+              </span>
+            </h2>
+            <p className="">
+              Please check the spelling or try searching with a different term
+            </p>
+          </div>
+        </div>
       </PageLayout>
     );
   }
@@ -87,8 +101,9 @@ const Tag = () => {
   return (
     <PageLayout title="Search Results">
       <h2 className="mb-4 text-3xl">Tags Results </h2>
-      <p className="text-sm dark:text-gray-300">
-        Found {items.length} matches with tag including &quot;{val}&quot;
+      <p className="text-sm dark:text-zinc-300">
+        Found {items.length} {items.length > 1 ? "matches" : "match"} with tag
+        including <span className="italic ">&quot;{val}&quot;</span>
       </p>
       <div className="flex flex-col mt-12 space-y-2 sm:grid sm:grid-cols-2 md:grid-cols-3 sm:space-y-0 sm:gap-4">
         {items.map((item) => (

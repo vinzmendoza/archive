@@ -316,12 +316,17 @@ const Item = () => {
       <PageLayout title="Item">
         <form onKeyDown={(e) => checkKeyDown(e)}>
           <div className="flex flex-col">
-            <label htmlFor="title" className="mb-2 text-sm text-gray-200">
+            <label
+              htmlFor="title"
+              className="mb-2 text-sm text-zinc-700 dark:text-zinc-200 after:content-['*'] after:ml-0.5"
+            >
               Title
             </label>
             <input
               {...register("title", { required: true })}
-              className="px-4 py-2 rounded-md shadow bg-gray-50 dark:bg-gray-800"
+              className={`px-4 py-2 rounded-md  bg-white dark:bg-zinc-800 ${
+                errors?.title && "border-2 border-red-400"
+              }`}
               placeholder="Title"
               defaultValue={item.title}
             />
@@ -332,29 +337,35 @@ const Item = () => {
           </div>
 
           <div className="flex flex-col">
-            <label htmlFor="tags" className="mb-2 text-sm text-gray-200">
+            <label
+              htmlFor="tags"
+              className="mb-2 text-sm text-zinc-700 dark:text-zinc-200"
+            >
               Tags
             </label>
-            <div className="p-2 rounded-md shadow bg-gray-50 focus-within:outline focus-within:outline-2 dark:bg-gray-800 ">
+            <div className="p-2 bg-white rounded-md focus-within:outline focus-within:outline-2 dark:bg-zinc-800 ">
               <ul className="flex flex-wrap items-start justify-start">
                 {item.tags.map((tag, index) => (
                   <li
                     key={index}
-                    className="flex items-center justify-center py-1 pl-3 pr-2 mb-2 mr-2 bg-gray-600 rounded-md"
+                    className="flex items-center justify-center py-1 pl-3 pr-2 mb-2 mr-2 rounded-md bg-zinc-200 dark:bg-zinc-600 hover:bg-zinc-300"
                   >
                     {tag.name}
                     <i
                       onClick={() => removeTag(index)}
                       className="ml-1 cursor-pointer"
                     >
-                      <HiXCircle size={22} className="hover:text-gray-400" />
+                      <HiXCircle
+                        size={22}
+                        className="hover:text-zinc-50 dark:hover:text-zinc-800"
+                      />
                     </i>
                   </li>
                 ))}
               </ul>
               <input
                 maxLength={45}
-                className="w-full mt-2 ml-2 bg-gray-50 dark:bg-gray-800 focus:outline-none"
+                className="w-full mt-2 ml-2 bg-white dark:bg-zinc-800 focus:outline-none"
                 placeholder="Enter a comma after each tag"
                 onKeyUp={(e) => (e.key === "," ? addTags(e) : null)}
                 onBlur={(e) => addTags(e)}
@@ -365,8 +376,11 @@ const Item = () => {
             </span>
           </div>
 
-          <div className="flex flex-col">
-            <label htmlFor="markdown" className="mb-2 text-sm text-gray-200">
+          <div className="flex flex-col mb-8">
+            <label
+              htmlFor="markdown"
+              className="mb-2 text-sm text-zinc-700 dark:text-zinc-200"
+            >
               Content
             </label>
             <div className="flex flex-col justify-between gap-4 sm:flex-row">
@@ -384,14 +398,29 @@ const Item = () => {
                 onChange={(value, viewUpdate) => {
                   handleOnChangeVal(value);
                 }}
-                className="w-full prose rounded-md shadow dark:prose-invert focus-within:outline-2 focus-within:outline"
+                className="w-full prose rounded-md dark:prose-invert focus-within:outline-2 focus-within:outline"
                 theme={resolvedTheme === "dark" ? "dark" : "light"}
               />
 
-              <div className="w-full p-4 prose rounded-md shadow dark:prose-invert dark:bg-gray-800 h-70v">
+              <div className="w-full p-4 prose bg-white rounded-md dark:prose-invert dark:bg-zinc-800 h-70v">
                 {reactContent}
               </div>
             </div>
+          </div>
+          <div className="flex items-center justify-end mt-4 space-x-8">
+            <button
+              className="flex px-6 py-2 font-semibold text-red-500 border border-red-500 rounded-md cursor-pointer hover:text-zinc-50 hover:bg-red-500"
+              onClick={openModal}
+            >
+              {isDeleting ? "Deleting" : "Delete"}
+            </button>
+            <button
+              className="flex px-6 py-2 font-semibold bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600 disabled:bg-white0 text-zinc-100"
+              disabled={isSubmitting}
+              onClick={onUpdate}
+            >
+              {isSubmitting ? "Updating" : "Update"}
+            </button>
           </div>
         </form>
         <Modal

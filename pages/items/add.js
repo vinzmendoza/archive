@@ -167,12 +167,17 @@ const Add = () => {
         <h2 className="mb-4 text-2xl">Add Post</h2>
 
         <div className="flex flex-col">
-          <label htmlFor="title" className="mb-2 text-sm text-gray-200">
+          <label
+            htmlFor="title"
+            className="mb-2 text-sm text-zinc-700 dark:text-zinc-200 after:content-['*'] after:ml-0.5"
+          >
             Title
           </label>
           <input
             {...register("title", { required: true })}
-            className="px-4 py-2 rounded-md shadow bg-gray-50 dark:bg-gray-800"
+            className={`px-4 py-2 rounded-md bg-zinc-50 dark:bg-zinc-800 ${
+              errors?.title && "border-2 border-red-400"
+            }`}
             placeholder="Title"
           />
           <span className="h-8 pt-1 text-xs text-red-400">
@@ -181,29 +186,35 @@ const Add = () => {
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="tags" className="mb-2 text-sm text-gray-200">
+          <label
+            htmlFor="tags"
+            className="mb-2 text-sm text-zinc-700 dark:text-zinc-200"
+          >
             Tags
           </label>
-          <div className="p-2 rounded bg-gray-50 focus-within:outline focus-within:outline-2 dark:bg-gray-800">
+          <div className="p-2 rounded bg-zinc-50 focus-within:outline focus-within:outline-2 dark:bg-zinc-800">
             <ul className="flex flex-wrap items-start justify-start">
               {tags.map((tag, index) => (
                 <li
                   key={index}
-                  className="flex items-center justify-center py-1 pl-3 pr-2 mb-2 mr-2 bg-gray-600 rounded-md"
+                  className="flex items-center justify-center py-1 pl-3 pr-2 mb-2 mr-2 rounded-md bg-zinc-200 dark:bg-zinc-600 hover:bg-zinc-300"
                 >
                   {tag}
                   <i
                     onClick={() => removeTag(index)}
                     className="ml-1 cursor-pointer"
                   >
-                    <HiXCircle size={22} />
+                    <HiXCircle
+                      size={22}
+                      className="hover:text-zinc-50 dark:hover:text-zinc-800"
+                    />
                   </i>
                 </li>
               ))}
             </ul>
             <input
               maxLength={45}
-              className="w-full mt-2 ml-2 bg-white dark:bg-gray-800 focus:outline-none"
+              className="w-full mt-2 ml-2 bg-zinc-50 dark:bg-zinc-800 focus:outline-none"
               placeholder="Enter a comma after each tag..."
               onKeyUp={(e) => (e.key === "," ? addTags(e) : null)}
               onBlur={(e) => addTags(e)}
@@ -215,7 +226,10 @@ const Add = () => {
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="markdown" className="mb-2 text-sm text-gray-200">
+          <label
+            htmlFor="markdown"
+            className="mb-2 text-sm text-zinc-700 dark:text-zinc-200"
+          >
             Content
           </label>
           <div className="flex flex-col justify-between gap-4 sm:flex-row">
@@ -230,10 +244,10 @@ const Add = () => {
               onChange={(value, viewUpdate) => {
                 handleOnChangeVal(value);
               }}
-              className="w-full prose rounded-md shadow dark:prose-invert focus-within:outline-2 focus-within:outline"
+              className="w-full prose rounded-md dark:prose-invert focus-within:outline-2 focus-within:outline"
               theme={resolvedTheme === "dark" ? "dark" : "light"}
             />
-            <div className="w-full p-4 prose rounded-md shadow dark:prose-invert dark:bg-gray-800 h-70v">
+            <div className="w-full p-4 prose rounded-md bg-zinc-50 dark:prose-invert dark:bg-zinc-800 h-70v">
               {reactContent}
             </div>
           </div>
@@ -242,7 +256,7 @@ const Add = () => {
         <div className="flex justify-end mt-4">
           <input
             type="submit"
-            className="p-2 bg-green-600 rounded cursor-pointer hover:bg-green-800"
+            className="flex px-6 py-2 font-semibold bg-blue-500 rounded cursor-pointer hover:bg-blue-600 text-zinc-100"
             value={isSubmitting ? "Submitting" : "Submit"}
           />
         </div>

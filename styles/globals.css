@@ -10,7 +10,6 @@ html,
 .cm-editor,
 .cm-scroller {
   border-radius: 0.375rem;
-  /* background-color: red; */
 }
 
 .ͼ1.cm-editor {
@@ -19,11 +18,11 @@ html,
 }
 
 .cm-theme-dark .cm-content {
-  background-color: #374151;
+  background-color: #3f3f46;
 }
 
 .cm-theme-dark .cm-gutter {
-  background-color: #1f2937;
+  background-color: #27272a;
 }
 
 .cm-theme-dark .cm-activeLine {
@@ -34,7 +33,18 @@ html,
   background-color: #374151;
 }
 
-.cm-theme-light .cm-content {
+.cm-theme-dark .ͼo.cm-focused .cm-selectionBackground,
+.cm-theme-dark .ͼo .cm-selectionBackground,
+.cm-theme-dark .ͼo .cm-content ::selection {
+  background-color: #6b7280 !important;
+  color: #fff;
+}
+
+.cm-theme-dark .ͼo .cm-selectionMatch {
+  background-color: rgba(107, 114, 128, 0.5);
+}
+
+/* .cm-theme-light .cm-content {
   background-color: #f3f4f6;
 }
 
@@ -45,6 +55,40 @@ html,
 .cm-theme-light .cm-gutterElement.cm-activeLineGutter,
 .cm-theme-light .cm-activeLine {
   background-color: #d1d5db;
+} */
+
+.cm-theme-light .cm-content {
+  background-color: #fafafa;
+}
+
+.cm-theme-light .cm-gutter {
+  background-color: #d4d4d8;
+}
+
+.cm-theme-light .cm-gutterElement.cm-activeLineGutter,
+.cm-theme-light .cm-activeLine {
+  background-color: #e4e4e7;
+}
+
+.cm-theme-light .ͼ2.cm-focused .cm-selectionBackground,
+.cm-theme-light .ͼ2 .cm-selectionBackground,
+.cm-theme-light .ͼ2 .cm-content ::selection {
+  background-color: #60a5fa !important;
+  color: #fff;
+}
+
+.cm-theme-light .ͼ1 .cm-selectionMatch {
+  background-color: rgba(96, 165, 250, 0.5);
+}
+
+.light pre {
+  background-color: #e4e4e7 !important;
+  color: #27272a !important;
+}
+
+.dark pre {
+  background-color: #18181b !important;
+  color: #fafafa !important;
 }
 
 :root {
