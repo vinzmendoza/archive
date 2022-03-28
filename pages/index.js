@@ -5,7 +5,7 @@ import Auth from "../components/Auth";
 import PageLayout from "../components/Layout/PageLayout";
 import { useAuth } from "../utils/context/Auth";
 import { supabase } from "../utils/supabaseClient";
-import Item from "./items/item";
+import Item from "../components/Item";
 import Loader from "../components/Loader";
 import EmptyData from "../components/svg/EmptyData";
 
@@ -44,7 +44,7 @@ const Home = () => {
 
   if (loadingData) {
     return (
-      <PageLayout title="Home">
+      <PageLayout title="Loading">
         <Loader />
       </PageLayout>
     );

@@ -5,7 +5,7 @@ import { supabase } from "../../utils/supabaseClient";
 import { useAuth } from "../../utils/context/Auth";
 import PageLayout from "../../components/Layout/PageLayout";
 import Auth from "../../components/Auth";
-import Item from "../items/item";
+import Item from "../../components/Item";
 import Loader from "../../components/Loader";
 import NoData from "../../components/svg/NoData";
 
@@ -101,7 +101,7 @@ const Search = () => {
 
   if (!items.length) {
     return (
-      <PageLayout title="No Data">
+      <PageLayout title="Search Results">
         <div className="flex flex-col items-center justify-center">
           <NoData />
           <div className="flex flex-col items-center justify-center">
@@ -126,7 +126,7 @@ const Search = () => {
   }
 
   return (
-    <PageLayout title="Results">
+    <PageLayout title="Search Results">
       <h2 className="mb-4 text-3xl">Search Results </h2>
       <p className="text-sm dark:text-zinc-300">
         Found {items.length} matches for{" "}

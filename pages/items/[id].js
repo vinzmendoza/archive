@@ -314,7 +314,7 @@ const Item = () => {
 
   return (
     <>
-      <PageLayout title="Item">
+      <PageLayout title={item.title}>
         <form onKeyDown={(e) => checkKeyDown(e)}>
           <div className="flex flex-col">
             <label

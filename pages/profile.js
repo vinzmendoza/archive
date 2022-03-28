@@ -104,7 +104,7 @@ const Profile = () => {
 
   if (profile.length === 0 || profile === undefined)
     return (
-      <PageLayout title="loading">
+      <PageLayout title="Loading">
         <div className="flex flex-col items-center justify-center">
           <div className={`relative w-32 h-32 overflow-hidden`}>
             <div className="w-32 h-32 rounded-full bg-zinc-600"></div>

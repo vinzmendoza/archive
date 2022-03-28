@@ -5,7 +5,7 @@ import { supabase } from "../../../utils/supabaseClient";
 import { useAuth } from "../../../utils/context/Auth";
 import PageLayout from "../../../components/Layout/PageLayout";
 import Auth from "../../../components/Auth";
-import Item from "../../items/item";
+import Item from "../../../components/Item";
 import Loader from "../../../components/Loader";
 import NoData from "../../../components/svg/NoData";
 
@@ -79,7 +79,7 @@ const Tag = () => {
 
   if (!items.length) {
     return (
-      <PageLayout title="No Data">
+      <PageLayout title="Search Results">
         <div className="flex flex-col items-center justify-center">
           <NoData />
           <div className="flex flex-col items-center justify-center">

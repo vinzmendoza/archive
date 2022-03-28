@@ -19,7 +19,7 @@ const PageNotFound = () => {
         <div className="mt-4">
           <button
             type="button"
-            className="px-2 py-1 rounded-md dark:hover:bg-blue-400 dark:text-gray-300 dark:hover:text-gray-50"
+            className="px-6 py-2 transition ease-in-out rounded-md dark:hover:bg-blue-500 dark:text-gray-300 dark:hover:text-gray-50"
             onClick={() => router.push("/")}
           >
             Click here to return home
