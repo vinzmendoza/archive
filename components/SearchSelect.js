@@ -39,7 +39,7 @@ const SearchSelect = ({ toggle, isActive, categoryRef, isModal }) => {
           <div
             key={categoryItem.id}
             onClick={() => setCategory(categoryItem)}
-            className="p-2 rounded-md cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-600"
+            className="p-2 transition ease-in-out rounded-md cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-600"
           >
             {categoryItem.title}
           </div>

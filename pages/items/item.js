@@ -5,7 +5,7 @@ const Item = ({ item }) => {
     <div className="p-2 divide-y rounded bg-zinc-100 divide-zinc-300 dark:divide-zinc-700 dark:bg-zinc-800">
       <NextLink href={`/items/${item.id}`} passHref>
         <div className="p-4 overflow-hidden rounded cursor-pointer dark:bg-zinc-800 group text-ellipsis ">
-          <a className="text-3xl group-hover:text-blue-400 dark:group-hover:text-blue-400 ">
+          <a className="text-3xl transition ease-in-out group-hover:text-blue-400 dark:group-hover:text-blue-400">
             {item.title}
           </a>
         </div>
@@ -21,7 +21,7 @@ const Item = ({ item }) => {
                 passHref
               >
                 <p
-                  className={`flex items-center justify-center px-3 py-1 rounded-md cursor-pointer bg-zinc-200 hover:bg-zinc-300  dark:bg-zinc-600 dark:hover:bg-zinc-700 ${
+                  className={`flex items-center justify-center px-3 py-1 rounded-md cursor-pointer transition ease-in-out bg-zinc-200 hover:bg-zinc-300  dark:bg-zinc-600 dark:hover:bg-zinc-700 ${
                     index + 1 > 6 && "hidden"
                   }`}
                 >
@@ -30,7 +30,7 @@ const Item = ({ item }) => {
               </NextLink>
               {index === 6 && (
                 <NextLink href={`/items/${item.id}`} key={item.id} passHref>
-                  <div className="flex items-center px-2 py-1 rounded-md hover:cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700">
+                  <div className="flex items-center px-2 py-1 transition ease-in-out rounded-md hover:cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700">
                     <p className="text-xs dark:text-zinc-300">See all tags</p>
                   </div>
                 </NextLink>

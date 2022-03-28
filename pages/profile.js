@@ -134,13 +134,13 @@ const Profile = () => {
             accept="image/*"
             onChange={getFile}
             disabled={loading}
-            className="block w-full text-sm text-zinc-500 file:bg-white file:text-blue-600 hover:file:bg-blue-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold dark:file:bg-blue-50 dark:file:text-blue-600 dark:hover:file:bg-blue-100 "
+            className="block w-full text-sm transition ease-in-out text-zinc-500 file:bg-white file:text-blue-600 hover:file:bg-blue-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold dark:file:bg-blue-50 dark:file:text-blue-600 dark:hover:file:bg-blue-100 "
           />
           <button
             type="submit"
             onClick={uploadAvatar}
             disabled={loading || Object.keys(profileImage).length < 1}
-            className="px-6 py-2 bg-blue-500 rounded-md hover:bg-blue-600 text-zinc-100 disabled:cursor-not-allowed dark:disabled:bg-zinc-700 dark:disabled:hover:bg-zinc-600 disabled:bg-zinc-200 disabled:hover:bg-zinc-300 disabled:text-zinc-900 dark:disabled:text-zinc-100"
+            className="px-6 py-2 transition ease-in-out bg-blue-500 rounded-md hover:bg-blue-600 text-zinc-100 disabled:cursor-not-allowed dark:disabled:bg-zinc-700 dark:disabled:hover:bg-zinc-600 disabled:bg-zinc-300 disabled:hover:bg-zinc-300 disabled:text-zinc-900 dark:disabled:text-zinc-100"
           >
             Update Profile Image
           </button>
@@ -161,7 +161,7 @@ const Profile = () => {
           <button
             onClick={signOut}
             disabled={loading}
-            className="px-2 py-1 mt-4 bg-red-500 rounded-md hover:bg-red-600 text-zinc-100"
+            className="px-2 py-1 mt-4 transition ease-in-out bg-red-500 rounded-md hover:bg-red-600 text-zinc-100"
           >
             Sign out
           </button>

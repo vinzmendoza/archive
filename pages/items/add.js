@@ -198,7 +198,7 @@ const Add = () => {
               {tags.map((tag, index) => (
                 <li
                   key={index}
-                  className="flex items-center justify-center py-1 pl-3 pr-2 mb-2 mr-2 rounded-md bg-zinc-200 dark:bg-zinc-600 hover:bg-zinc-300"
+                  className="flex items-center justify-center py-1 pl-3 pr-2 mb-2 mr-2 transition ease-in-out rounded-md bg-zinc-200 dark:bg-zinc-600 dark:hover:bg-zinc-700 hover:bg-zinc-300"
                 >
                   {tag}
                   <i
@@ -207,7 +207,7 @@ const Add = () => {
                   >
                     <HiXCircle
                       size={22}
-                      className="hover:text-zinc-50 dark:hover:text-zinc-800"
+                      className="transition ease-in-out hover:text-zinc-50 dark:hover:text-zinc-400"
                     />
                   </i>
                 </li>

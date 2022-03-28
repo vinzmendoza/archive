@@ -80,7 +80,7 @@ const Navbar = () => {
             <div className="flex">
               <div className="flex items-center w-full mr-2 rounded-md bg-zinc-50 dark:bg-zinc-800 focus-within:outline-2 focus-within:outline">
                 <button
-                  className="p-2 transition ease-in-out rounded-l-md hover:bg-zinc-300 hover:dark:bg-zinc-700"
+                  className="p-2 transition ease-in-out rounded-l-md hover:bg-zinc-300 hover:dark:bg-zinc-600"
                   type="submit"
                 >
                   <HiSearch size={24} />

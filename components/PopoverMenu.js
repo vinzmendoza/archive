@@ -37,7 +37,7 @@ const PopoverMenu = ({ state: isActive, setIsActive }) => {
   };
 
   return (
-    <div className="absolute right-0 px-4 py-6 mt-1 z-[60] rounded-md dark:bg-zinc-700 bg-white divide-y dark:divide-zinc-500 divide-zinc-300">
+    <div className="absolute right-0 px-4 py-6 mt-1 z-[60] rounded-md dark:bg-zinc-700 bg-zinc-50 shadow divide-y dark:divide-zinc-500 divide-zinc-300">
       <div className="flex flex-row items-center mb-4">
         <div className={`relative w-10 h-10 overflow-hidden`}>
           {profile.avatar_url ? (
@@ -69,7 +69,7 @@ const PopoverMenu = ({ state: isActive, setIsActive }) => {
             <button
               aria-label="Toggle Dark Mode"
               type="button"
-              className={`relative flex items-center justify-center transition-all bg-white rounded-full w-4 h-4 ring-zinc-400 group-hover:ring-2 dark:ring-zinc-500 dark:bg-zinc-400 ${
+              className={`relative flex items-center justify-center transition-all bg-zinc-50 rounded-full w-4 h-4 ring-zinc-400 group-hover:ring-2 dark:ring-zinc-500 dark:bg-zinc-400 ${
                 resolvedTheme === "dark" ? "translate-x-6" : ""
               }`}
             ></button>
@@ -77,7 +77,7 @@ const PopoverMenu = ({ state: isActive, setIsActive }) => {
         </div>
 
         <NextLink href="/profile" passHref>
-          <div className="flex items-center p-2 rounded cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-600">
+          <div className="flex items-center p-2 transition ease-in-out rounded cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-600">
             <HiUser size={18} />
             <p className="ml-2 text-sm">Profile</p>
           </div>
@@ -85,7 +85,7 @@ const PopoverMenu = ({ state: isActive, setIsActive }) => {
 
         <div
           onClick={signOut}
-          className="flex items-center p-2 rounded cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-600"
+          className="flex items-center p-2 transition ease-in-out rounded cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-600"
         >
           <HiLogout size={18} />
           <p className="ml-2 text-sm">Sign out</p>

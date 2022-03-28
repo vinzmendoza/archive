@@ -54,7 +54,7 @@ const Home = () => {
     return (
       <PageLayout title="Home">
         <NextLink href="/items/add" passHref>
-          <a className="p-2 rounded dark:bg-blue-500 dark:text-zinc-800 dark:hover:bg-blue-400">
+          <a className="px-6 py-3 text-lg font-bold transition ease-in-out bg-blue-400 rounded-full hover:bg-blue-500 text-zinc-50">
             Add Item
           </a>
         </NextLink>
@@ -77,7 +77,7 @@ const Home = () => {
   return (
     <PageLayout title="Home">
       <NextLink href="/items/add" passHref>
-        <a className="px-6 py-3 text-lg font-bold bg-blue-400 rounded-full hover:bg-blue-500 text-zinc-50">
+        <a className="px-6 py-3 text-lg font-bold transition ease-in-out bg-blue-400 rounded-full hover:bg-blue-500 text-zinc-50">
           Add Item
         </a>
       </NextLink>
