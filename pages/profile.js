@@ -140,7 +140,7 @@ const Profile = () => {
             type="submit"
             onClick={uploadAvatar}
             disabled={loading || Object.keys(profileImage).length < 1}
-            className="px-6 py-2 bg-blue-500 rounded-md text-zinc-100 disabled:cursor-not-allowed dark:disabled:bg-zinc-700 dark:disabled:hover:bg-zinc-600 disabled:bg-zinc-200 disabled:hover:bg-zinc-300 disabled:text-zinc-900 dark:disabled:text-zinc-100"
+            className="px-6 py-2 bg-blue-500 rounded-md hover:bg-blue-600 text-zinc-100 disabled:cursor-not-allowed dark:disabled:bg-zinc-700 dark:disabled:hover:bg-zinc-600 disabled:bg-zinc-200 disabled:hover:bg-zinc-300 disabled:text-zinc-900 dark:disabled:text-zinc-100"
           >
             Update Profile Image
           </button>

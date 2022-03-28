@@ -44,30 +44,17 @@ html,
   background-color: rgba(107, 114, 128, 0.5);
 }
 
-/* .cm-theme-light .cm-content {
-  background-color: #f3f4f6;
-}
-
-.cm-theme-light .cm-gutter {
-  background-color: #e5e7eb;
-}
-
-.cm-theme-light .cm-gutterElement.cm-activeLineGutter,
-.cm-theme-light .cm-activeLine {
-  background-color: #d1d5db;
-} */
-
 .cm-theme-light .cm-content {
   background-color: #fafafa;
 }
 
 .cm-theme-light .cm-gutter {
-  background-color: #d4d4d8;
+  background-color: #f4f4f5;
 }
 
 .cm-theme-light .cm-gutterElement.cm-activeLineGutter,
 .cm-theme-light .cm-activeLine {
-  background-color: #e4e4e7;
+  background-color: #d4d4d8;
 }
 
 .cm-theme-light .ͼ2.cm-focused .cm-selectionBackground,

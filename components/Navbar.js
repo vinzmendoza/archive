@@ -78,9 +78,9 @@ const Navbar = () => {
         <div className="hidden lg:basis-1/3 sm:inline">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex">
-              <div className="flex items-center w-full mr-2 bg-white rounded-md shadow dark:bg-zinc-800 focus-within:outline-2 focus-within:outline">
+              <div className="flex items-center w-full mr-2 rounded-md bg-zinc-50 dark:bg-zinc-800 focus-within:outline-2 focus-within:outline">
                 <button
-                  className="p-2 transition ease-in-out rounded-l-md hover:bg-zinc-200 hover:dark:bg-zinc-700"
+                  className="p-2 transition ease-in-out rounded-l-md hover:bg-zinc-300 hover:dark:bg-zinc-700"
                   type="submit"
                 >
                   <HiSearch size={24} />
@@ -88,7 +88,7 @@ const Navbar = () => {
                 <input
                   placeholder="Search"
                   {...register("val")}
-                  className="w-full py-2 pl-1 focus:outline-none rounded-r-md dark:bg-zinc-800"
+                  className="w-full py-2 pl-1 focus:outline-none rounded-r-md bg-zinc-50 dark:bg-zinc-800"
                 />
               </div>
               <SearchSelect

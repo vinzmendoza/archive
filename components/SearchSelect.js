@@ -12,8 +12,8 @@ const SearchSelect = ({ toggle, isActive, categoryRef, isModal }) => {
         tabIndex={0}
         className={`flex justify-between items-center p-2 rounded-md  cursor-pointer h-auto ${
           isModal
-            ? "bg-white dark:bg-zinc-700 "
-            : "bg-white dark:bg-zinc-800 shadow "
+            ? "bg-zinc-50 dark:bg-zinc-700 "
+            : "bg-zinc-50 dark:bg-zinc-800 "
         } ${isActive && "focus:outline focus:outline-2 focus:outline-inherit"}`}
       >
         {!loading &&
@@ -30,7 +30,9 @@ const SearchSelect = ({ toggle, isActive, categoryRef, isModal }) => {
       </div>
       <div
         className={`${isActive ? "inline" : "hidden"} absolute p-2 rounded-md ${
-          isModal ? "bg-white dark:bg-zinc-600" : "bg-white dark:bg-zinc-700"
+          isModal
+            ? "bg-zinc-50 dark:bg-zinc-600"
+            : "bg-zinc-50 dark:bg-zinc-700"
         } w-32 mt-2`}
       >
         {categories.map((categoryItem, index) => (

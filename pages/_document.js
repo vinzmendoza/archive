@@ -10,7 +10,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head />
-        <body className="text-zinc-900 bg-zinc-100 dark:text-zinc-100 dark:bg-zinc-900">
+        <body className="text-zinc-900 bg-zinc-200 dark:text-zinc-100 dark:bg-zinc-900">
           <Main />
           <NextScript />
           <div id="modal-root"></div>

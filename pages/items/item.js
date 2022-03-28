@@ -2,7 +2,7 @@ import NextLink from "next/link";
 
 const Item = ({ item }) => {
   return (
-    <div className="p-2 divide-y rounded bg-zinc-50 divide-zinc-300 dark:divide-zinc-700 dark:bg-zinc-800">
+    <div className="p-2 divide-y rounded bg-zinc-100 divide-zinc-300 dark:divide-zinc-700 dark:bg-zinc-800">
       <NextLink href={`/items/${item.id}`} passHref>
         <div className="p-4 overflow-hidden rounded cursor-pointer dark:bg-zinc-800 group text-ellipsis ">
           <a className="text-3xl group-hover:text-blue-400 dark:group-hover:text-blue-400 ">

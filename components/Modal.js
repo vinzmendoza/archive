@@ -65,7 +65,7 @@ const Modal = ({
             <form onSubmit={handleSubmit(onSearch)}>
               <div className="pb-4">
                 <div className="flex flex-col">
-                  <div className="flex items-center w-full mb-2 bg-white rounded-md focus-within:outline-2 focus-within:outline dark:bg-zinc-700">
+                  <div className="flex items-center w-full mb-2 rounded-md bg-zinc-50 focus-within:outline-2 focus-within:outline dark:bg-zinc-700">
                     <button
                       className="p-2 transition ease-in-out rounded-l-md hover:bg-zinc-300 hover:dark:bg-zinc-600"
                       type="submit"
@@ -107,7 +107,7 @@ const Modal = ({
     ) : (
       <div className="fixed inset-0 z-50 flex flex-col w-full h-full p-4 sm:items-center sm:justify-center dark:bg-zinc-900/70 bg-zinc-400/70">
         <div className="sm:w-96" ref={modalRef}>
-          <div className="relative w-full h-full p-8 rounded-md dark:bg-zinc-800 bg-zinc-200">
+          <div className="relative w-full h-full p-8 rounded-md dark:bg-zinc-800 bg-zinc-100">
             <button
               className="absolute top-0 right-0 p-1 mt-2 mr-2 rounded-md hover:bg-zinc-400 group"
               onClick={handleCloseClick}
