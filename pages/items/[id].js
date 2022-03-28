@@ -17,6 +17,7 @@ import { HiXCircle } from "react-icons/hi";
 import { useDetectClickOutside } from "../../utils/hooks/useDetectClickOutside";
 import Modal from "../../components/Modal";
 import Loader from "../../components/Loader";
+import Spinner from "../../components/svg/Spinner";
 
 const Item = () => {
   const { user } = useAuth();
@@ -324,7 +325,7 @@ const Item = () => {
             </label>
             <input
               {...register("title", { required: true })}
-              className={`px-4 py-2 rounded-md  bg-white dark:bg-zinc-800 ${
+              className={`px-4 py-2 rounded-md  bg-zinc-50 dark:bg-zinc-800 ${
                 errors?.title && "border-2 border-red-400"
               }`}
               placeholder="Title"
@@ -343,7 +344,7 @@ const Item = () => {
             >
               Tags
             </label>
-            <div className="p-2 bg-white rounded-md focus-within:outline focus-within:outline-2 dark:bg-zinc-800 ">
+            <div className="p-2 rounded-md bg-zinc-50 focus-within:outline focus-within:outline-2 dark:bg-zinc-800 ">
               <ul className="flex flex-wrap items-start justify-start">
                 {item.tags.map((tag, index) => (
                   <li
@@ -365,7 +366,7 @@ const Item = () => {
               </ul>
               <input
                 maxLength={45}
-                className="w-full mt-2 ml-2 bg-white dark:bg-zinc-800 focus:outline-none"
+                className="w-full mt-2 ml-2 bg-zinc-50 dark:bg-zinc-800 focus:outline-none"
                 placeholder="Enter a comma after each tag"
                 onKeyUp={(e) => (e.key === "," ? addTags(e) : null)}
                 onBlur={(e) => addTags(e)}
@@ -402,24 +403,24 @@ const Item = () => {
                 theme={resolvedTheme === "dark" ? "dark" : "light"}
               />
 
-              <div className="w-full p-4 overflow-y-auto prose bg-white rounded-md dark:prose-invert dark:bg-zinc-800 h-70v">
+              <div className="w-full p-4 overflow-y-auto prose rounded-md bg-zinc-50 dark:prose-invert dark:bg-zinc-800 h-70v">
                 {reactContent}
               </div>
             </div>
           </div>
           <div className="flex items-center justify-end mt-4 space-x-8">
             <button
-              className="flex px-6 py-2 font-semibold text-red-500 border border-red-500 rounded-md cursor-pointer hover:text-zinc-50 hover:bg-red-500"
+              className="flex justify-center w-32 px-6 py-2 font-semibold text-red-500 border border-red-500 rounded-md cursor-pointer hover:text-zinc-50 hover:bg-red-500"
               onClick={openModal}
             >
               {isDeleting ? "Deleting" : "Delete"}
             </button>
             <button
-              className="flex px-6 py-2 font-semibold bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600 disabled:bg-white0 text-zinc-100"
+              className="flex justify-center w-32 px-6 py-2 font-semibold bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600 disabled:bg-blue-300 disabled:hover:bg-blue-300 text-zinc-100"
               disabled={isSubmitting}
               onClick={onUpdate}
             >
-              {isSubmitting ? "Updating" : "Update"}
+              {isSubmitting ? <Spinner /> : "Update"}
             </button>
           </div>
         </form>

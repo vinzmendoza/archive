@@ -14,6 +14,7 @@ import { useAuth } from "../../utils/context/Auth";
 import { useTheme } from "next-themes";
 import { supabase } from "../../utils/supabaseClient";
 import { toast } from "react-toastify";
+import Spinner from "../../components/svg/Spinner";
 
 const Add = () => {
   const [reactContent, setMarkdownSource] = useRemark();
@@ -254,11 +255,13 @@ const Add = () => {
         </div>
 
         <div className="flex justify-end mt-4">
-          <input
+          <button
+            className="flex justify-center w-32 px-6 py-2 font-semibold bg-blue-500 rounded-md cursor-pointer hover:bg-blue-600 disabled:bg-blue-300 disabled:hover:bg-blue-300 text-zinc-100"
             type="submit"
-            className="flex px-6 py-2 font-semibold bg-blue-500 rounded cursor-pointer hover:bg-blue-600 text-zinc-100"
-            value={isSubmitting ? "Submitting" : "Submit"}
-          />
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? <Spinner /> : "Submit"}
+          </button>
         </div>
       </form>
     </PageLayout>
