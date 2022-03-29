@@ -2,9 +2,15 @@ import { useRouter } from "next/router";
 
 import NotFound from "../components/svg/NotFound";
 import PageLayout from "../components/Layout/PageLayout";
+import { useAuth } from "../utils/context/Auth";
+import Auth from "../components/Auth";
 
 const PageNotFound = () => {
   const router = useRouter();
+  const { user } = useAuth();
+
+  if (!user) return <Auth />;
+
   return (
     <PageLayout title="Page not Found">
       <div className="flex flex-col items-center ">
