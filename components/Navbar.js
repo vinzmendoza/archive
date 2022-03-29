@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import NextLink from "next/link";
-import { HiSearch, HiUser } from "react-icons/hi";
+import { HiSearch } from "react-icons/hi";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import { supabase } from "../utils/supabaseClient";
 
 import Modal from "./Modal";
 import { useDetectClickOutside } from "../utils/hooks/useDetectClickOutside";
@@ -15,7 +14,6 @@ import { useSearch } from "../utils/context/Search";
 
 const Navbar = () => {
   const router = useRouter();
-  // const { user } = useAuth();
   const { profile } = useAvatar();
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useDetectClickOutside(dropdownRef, false);
@@ -32,7 +30,7 @@ const Navbar = () => {
     false
   );
 
-  const { searchValue, category, categories } = useSearch();
+  const { searchValue, category } = useSearch();
 
   const {
     register,
@@ -71,7 +69,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between p-4 mx-auto">
         <div>
           <NextLink href="/" passHref>
-            <a className="font-bold uppercase">Archive</a>
+            <a className="font-bold uppercase ">Archive</a>
           </NextLink>
         </div>
 
