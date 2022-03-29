@@ -241,10 +241,10 @@ const Add = () => {
               onChange={(value, viewUpdate) => {
                 handleOnChangeVal(value);
               }}
-              className="w-full prose rounded-md dark:prose-invert focus-within:outline-2 focus-within:outline"
+              className="w-full overflow-y-auto prose rounded-md dark:prose-invert focus-within:outline-2 focus-within:outline"
               theme={resolvedTheme === "dark" ? "dark" : "light"}
             />
-            <div className="w-full p-4 prose rounded-md bg-zinc-50 dark:prose-invert dark:bg-zinc-800 h-70v">
+            <div className="w-full p-4 overflow-y-auto prose rounded-md bg-zinc-50 dark:prose-invert dark:bg-zinc-800 h-70v">
               {reactContent}
             </div>
           </div>
