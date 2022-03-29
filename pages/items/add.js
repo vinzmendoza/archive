@@ -25,10 +25,6 @@ const Add = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // const notify = useCallback((type, message) => {
-  //   toast({ type, message });
-  // }, []);
-
   const {
     register,
     handleSubmit,
